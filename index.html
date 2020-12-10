@@ -5,8 +5,8 @@
 	<title>JavaScript Practice</title>
 	<style>
 		.box {
-			width: 100px;
-			height: 100px;
+			width: 200px;
+			height: 200px;
 			background-color: skyblue;
 			cursor: pointer;
 		}
@@ -19,7 +19,14 @@
 		'use strict';
 
 		document.getElementById('target').addEventListener('click', () => {
+			//document.getElementByIdでターゲットを指定。　documentとは文章全体のこと。
+			//.(ドット)で繋ぎ、getElementById()とすると、指定したidを持つ要素を文章全体から取得するという意味になる。
+			//EventListenerとは「何かが起きたら、何らかの処理をする」という仕組み。今回だと、クリックしたらという意味になる。
+			//クリック以外にもdblclickで「ダブルクリック」という意味になる。
 			document.getElementById('target').style.background = 'pink';
+			document.getElementById('target').style.borderRadius = '50%';
+			//() => {document.getElementById('target').style.background = 'pink';}とは、
+			//色々な処理をまとめるための関数という仕組みで、この中に何行でも処理を書いていくことができる。
 		});
 	</script>
 </body>
