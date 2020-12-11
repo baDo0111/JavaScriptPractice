@@ -15,46 +15,75 @@
 			cursor: pointer;
 			transition: 0.8s;
 			margin: 0 8px 8px 0;
+			text-align: center;
+			line-height: 200px;
 		}
-		.circle {
+		.win {
 			background-color: pink;
 			border-radius: 50%;
 			transform: rotate(360deg);
 		}
+		.lose {
+			transform: scale(0.9);
+		}
 	</style>
 </head>
 <body>
-	<div class="box" id="target1"></div>
+	<!-- <div class="box" id="target1"></div>
 	<div class="box" id="target2"></div>
-	<div class="box" id="target3"></div>
-
+	<div class="box" id="target3"></div>-->
 	<script>
 		'use strict';
 
-		const target1 = document.getElementById('target1');
-		const target2 = document.getElementById('target2');
-		const target3 = document.getElementById('target3');
-		//constとは定数のことで好きな短い名前をつける。割り当てたい値を＝で結ぶ。
-		//document.getElementByIdを使うよりもtargetで表現できるので、
-		//コードの可読性の向上と、id名が他のものに変わった場合、この一箇所を変更すれば良いので、プログラムが変更に強くなる。
+		// const target1 = document.getElementById('target1');
+		// const target2 = document.getElementById('target2');
+		// const target3 = document.getElementById('target3');
+		// constとは定数のことで好きな短い名前をつける。割り当てたい値を＝で結ぶ。
+		// document.getElementByIdを使うよりもtargetで表現できるので、
+		// コードの可読性の向上と、id名が他のものに変わった場合、この一箇所を変更すれば良いので、プログラムが変更に強くなる。
 
-		target1.addEventListener('click', () => {
+		// target1.addEventListener('click', () => {
 			// document.getElementByIdでターゲットを指定。　documentとは文章全体のこと。
 			// .(ドット)で繋ぎ、getElementById()とすると、指定したidを持つ要素を文章全体から取得するという意味になる。
 			// EventListenerとは「何かが起きたら、何らかの処理をする」という仕組み。今回だと、クリックしたらという意味になる。
 			// クリック以外にもdblclickで「ダブルクリック」という意味になる。
 			// ()と{}を=>でつなぐ書き方はアロー関数と呼ばれている
 			// JSが期待した挙動をしない時は、Chromeのデベロッパーツール→Consoleでエラーメッセージを確認できる。
-			target1.classList.toggle('circle');
-		});
+			// target1.classList.toggle('circle');
+		// });
 
-		target2.addEventListener('click', () => {
-			target2.classList.toggle('circle');
-		});
+		// target2.addEventListener('click', () => {
+		// 	target2.classList.toggle('circle');
+		// });
 
-		target3.addEventListener('click', () => {
-			target3.classList.toggle('circle');
-		});
+		// target3.addEventListener('click', () => {
+		// 	target3.classList.toggle('circle');
+		// });
+
+		const num = 5;
+		const winner = Math.floor(Math.random() * num);
+		// Math.randam()は0以上1未満のランダムな数値を生成するので、それにnumをかけることにより、
+		// num = 5の時は0以上5未満のランダムな数値が生成される。
+		// 今回の練習で欲しい数値は0から4までのランダムな整数値なのでMath.floor()という命令を使って小数点以下を切り捨てる。
+		// 結果、0から4のランダムな整数値がwinnerに入る。
+
+		for (let i = 0; i < num; i++) {
+			const div = document.createElement('div');
+			div.classList.add('box');
+
+			div.addEventListener('click', () => {
+				if (i === winner) {
+					div.textContent = 'Win!';
+					div.classList.add('win');
+				}else {
+					div.textContent = 'Lose!';
+					div.classList.add('lose');
+				}
+			});
+
+			document.body.appendChild(div);
+		}
+
 	</script>
 </body>
 </html>
